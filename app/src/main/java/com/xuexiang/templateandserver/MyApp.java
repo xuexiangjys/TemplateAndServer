@@ -24,11 +24,13 @@ import androidx.multidex.MultiDex;
 
 import com.xuexiang.templateandserver.utils.sdkinit.UMengInit;
 import com.xuexiang.templateandserver.utils.sdkinit.XBasicLibInit;
+import com.xuexiang.xormlite.annotation.DataBase;
 
 /**
  * @author xuexiang
  * @since 2018/11/7 下午1:12
  */
+@DataBase(name = "AndServer")
 public class MyApp extends Application {
 
     @Override

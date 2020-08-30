@@ -38,14 +38,6 @@
 
 2.在Controller类上加上`@RestController`和`@RequestMapping`注解。
 
-## 如果觉得项目还不错，可以考虑打赏一波
+### 日志查看
 
-> 你的打赏是我维护的动力，我将会列出所有打赏人员的清单在下方作为凭证，打赏前请留下打赏项目的备注！
-
-![](https://github.com/xuexiangjys/Resource/blob/master/img/pay/alipay.jpeg) &emsp; ![](https://github.com/xuexiangjys/Resource/blob/master/img/pay/weixinpay.jpeg)
-
-## 联系方式
-
-[![](https://img.shields.io/badge/点击一键加入QQ交流群-602082750-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=9922861ef85c19f1575aecea0e8680f60d9386080a97ed310c971ae074998887)
-
-![](https://github.com/xuexiangjys/Resource/blob/master/img/qq/qq_group.jpg)
+在logcat上搜索关键词"AndServer"即可查看请求日志。

@@ -99,6 +99,9 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'org.apache.commons:commons-collections4:4.4'
     implementation deps.gson
+    //数据库
+    implementation 'com.github.xuexiangjys.XOrmlite:xormlite-runtime:1.0.1'
+    annotationProcessor 'com.github.xuexiangjys.XOrmlite:xormlite-compiler:1.0.1'
 
     implementation deps.androidx.multidex
     //屏幕适配AutoSize
