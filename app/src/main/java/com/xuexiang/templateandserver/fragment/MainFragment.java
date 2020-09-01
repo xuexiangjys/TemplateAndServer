@@ -108,6 +108,7 @@ public class MainFragment extends BaseFragment implements OnServerStatusListener
             addressList.add("服务器启动成功，可访问下方链接:");
             addressList.add(mRootUrl);
             addressList.add("http://" + ip + ":8080/login.html");
+            addressList.add("http://" + ip + ":8080/register.html");
             tvMessage.setText(TextUtils.join("\n", addressList));
         } else {
             mRootUrl = null;

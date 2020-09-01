@@ -17,6 +17,7 @@ package com.xuexiang.server.component;
 
 import androidx.annotation.NonNull;
 
+import com.xuexiang.server.api.base.ApiException;
 import com.xuexiang.server.utils.ApiUtils;
 import com.yanzhenjie.andserver.annotation.Resolver;
 import com.yanzhenjie.andserver.error.BasicException;
@@ -38,13 +39,15 @@ public class AppExceptionResolver implements ExceptionResolver {
     @Override
     public void onResolve(@NonNull HttpRequest request, @NonNull HttpResponse response, @NonNull Throwable e) {
         e.printStackTrace();
+        int code = StatusCode.SC_INTERNAL_SERVER_ERROR;
         if (e instanceof BasicException) {
-            BasicException exception = (BasicException) e;
-            response.setStatus(exception.getStatusCode());
-        } else {
-            response.setStatus(StatusCode.SC_INTERNAL_SERVER_ERROR);
+            // 基础框架的错误
+            code = ((BasicException) e).getStatusCode();
+        } else if (e instanceof ApiException) {
+            // 自定义的错误
+            code = ((ApiException) e).getCode();
         }
-        String body = ApiUtils.failedJson(response.getStatus(), e.getMessage());
+        String body = ApiUtils.failedJson(code, e.getMessage());
         response.setBody(new JsonBody(body));
     }
 }
