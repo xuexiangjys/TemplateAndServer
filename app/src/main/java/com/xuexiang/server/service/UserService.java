@@ -64,8 +64,9 @@ public interface UserService {
      * @param pageNum  页号
      * @param pageSize 一页的数量
      * @return 指定页面的用户信息
+     * @throws SQLException 数据库执行报错
      */
-    List<User> findAllUser(int pageNum, int pageSize);
+    List<User> findAllUser(int pageNum, int pageSize) throws SQLException;
 
     /**
      * 查询所有用户信息

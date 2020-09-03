@@ -55,8 +55,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllUser(int pageNum, int pageSize) {
-        return null;
+    public List<User> findAllUser(int pageNum, int pageSize) throws SQLException {
+        return mService.queryPage(pageNum, pageSize, User.KEY_ID, true);
     }
 
     @Override

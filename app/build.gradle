@@ -101,8 +101,8 @@ dependencies {
     implementation deps.gson
     implementation 'io.jsonwebtoken:jjwt:0.9.0'
     //数据库
-    implementation 'com.github.xuexiangjys.XOrmlite:xormlite-runtime:1.0.1'
-    annotationProcessor 'com.github.xuexiangjys.XOrmlite:xormlite-compiler:1.0.1'
+    implementation 'com.github.xuexiangjys.XOrmlite:xormlite-runtime:1.0.2'
+    annotationProcessor 'com.github.xuexiangjys.XOrmlite:xormlite-compiler:1.0.2'
 
     implementation deps.androidx.multidex
     //屏幕适配AutoSize

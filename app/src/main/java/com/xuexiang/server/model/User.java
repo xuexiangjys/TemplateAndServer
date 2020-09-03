@@ -11,7 +11,7 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 @DatabaseTable(tableName = "User")
 public class User {
-
+    public static final String KEY_ID = "Id";
     public static final String KEY_LOGIN_NAME = "loginName";
     public static final String KEY_PASSWORD = "password";
 
