@@ -27,6 +27,10 @@ import com.xuexiang.constant.MemoryConstants;
  */
 public final class ServerConfig {
 
+    private ServerConfig() {
+        throw new UnsupportedOperationException("u can't instantiate me...");
+    }
+
     /**
      * web页面服务资源的加载路径
      */
@@ -66,8 +70,6 @@ public final class ServerConfig {
          * 上传文件写入磁盘前读取的缓存池大小
          */
         public static final int MAX_IN_MEMORY_SIZE = MemoryConstants.KB * 10;
-
-
     }
 
 

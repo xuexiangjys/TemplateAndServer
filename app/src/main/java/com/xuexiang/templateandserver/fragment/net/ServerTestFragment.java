@@ -24,6 +24,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.xuexiang.rxutil2.lifecycle.RxLifecycle;
 import com.xuexiang.server.api.request.PageQuery;
 import com.xuexiang.server.model.User;
 import com.xuexiang.templateandserver.R;
@@ -45,6 +46,7 @@ import com.xuexiang.xutil.common.CollectionUtils;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -74,7 +76,7 @@ public class ServerTestFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_service_manage;
+        return R.layout.fragment_server_test;
     }
 
     @Override
@@ -139,6 +141,7 @@ public class ServerTestFragment extends BaseFragment {
     private void deleteUser(User item) {
         XHttpProxy.proxy(TestApi.UserService.class)
                 .deleteUser(item.getId())
+                .compose(RxLifecycle.with(this).bindToLifecycle())
                 .subscribeWith(new TipProgressLoadingSubscriber<Boolean>(this) {
                     @Override
                     protected void onSuccess(Boolean aBoolean) {
@@ -201,4 +204,13 @@ public class ServerTestFragment extends BaseFragment {
             }
         }
     }
+
+    @SingleClick
+    @OnClick(R.id.fab_recycler_view)
+    public void onViewClicked(View view) {
+        openPage(FileUploadFragment.class);
+
+    }
+
+
 }

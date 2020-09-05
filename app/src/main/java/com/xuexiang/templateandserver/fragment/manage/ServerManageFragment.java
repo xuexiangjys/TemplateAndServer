@@ -65,7 +65,7 @@ public class ServerManageFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_service_manage;
+        return R.layout.fragment_server_manage;
     }
 
     @Override

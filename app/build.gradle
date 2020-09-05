@@ -103,7 +103,7 @@ dependencies {
     //数据库
     implementation 'com.github.xuexiangjys.XOrmlite:xormlite-runtime:1.0.2'
     annotationProcessor 'com.github.xuexiangjys.XOrmlite:xormlite-compiler:1.0.2'
-
+    implementation 'com.github.xuexiangjys:rxutil2:1.1.5'
     implementation deps.androidx.recyclerview
     implementation 'com.github.xuexiangjys.SmartRefreshLayout:refresh-layout:1.1.5'
     implementation deps.androidx.multidex

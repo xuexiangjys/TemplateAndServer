@@ -32,6 +32,7 @@ import com.xuexiang.templateandserver.fragment.manage.ServerManageFragment;
 import com.xuexiang.templateandserver.fragment.net.ServerTestFragment;
 import com.xuexiang.templateandserver.utils.Utils;
 import com.xuexiang.templateandserver.utils.XToastUtils;
+import com.xuexiang.xaop.annotation.Permission;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xpage.annotation.Page;
@@ -47,6 +48,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.xuexiang.xaop.consts.PermissionConsts.STORAGE;
 
 /**
  * @author xuexiang
@@ -74,8 +77,12 @@ public class MainFragment extends BaseFragment implements OnServerStatusListener
     protected void initViews() {
         mServerManager = new ServerManager(getContext(), this);
         mServerManager.register();
+    }
+
+    @Override
+    protected void initListeners() {
         // 开启服务
-        btnStart.performClick();
+        startServer();
     }
 
     @SingleClick
@@ -83,8 +90,7 @@ public class MainFragment extends BaseFragment implements OnServerStatusListener
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_start:
-                getProgressLoader().showLoading();
-                mServerManager.startServer();
+                startServer();
                 break;
             case R.id.btn_stop:
                 getProgressLoader().showLoading();
@@ -104,6 +110,12 @@ public class MainFragment extends BaseFragment implements OnServerStatusListener
             default:
                 break;
         }
+    }
+
+    @Permission(STORAGE)
+    private void startServer() {
+        getProgressLoader().showLoading();
+        mServerManager.startServer();
     }
 
     private void confirmIpAddress() {

@@ -25,12 +25,13 @@ import androidx.multidex.MultiDex;
 import com.xuexiang.templateandserver.utils.sdkinit.UMengInit;
 import com.xuexiang.templateandserver.utils.sdkinit.XBasicLibInit;
 import com.xuexiang.xormlite.annotation.DataBase;
+import com.xuexiang.xormlite.enums.DataBaseType;
 
 /**
  * @author xuexiang
  * @since 2018/11/7 下午1:12
  */
-@DataBase(name = "AndServer")
+@DataBase(name = "AndServer", type = DataBaseType.EXTERNAL, path = "/storage/emulated/0/AndServer/databases")
 public class MyApp extends Application {
 
     @Override

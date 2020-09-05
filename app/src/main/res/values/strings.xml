@@ -36,4 +36,8 @@
     <string name="lab_continue">继续</string>
     <string name="hint_please_input_server_ip_address">请输入服务器的地址</string>
     <string name="tip_url_input_error">地址输入错误</string>
+    <string name="select_file">选择文件</string>
+    <string name="upload_file_path">上传文件路径:</string>
+    <string name="server_save_path">服务器保存路径:</string>
+    <string name="upload_file">上传文件</string>
 </resources>

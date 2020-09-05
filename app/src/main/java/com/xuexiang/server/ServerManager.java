@@ -19,7 +19,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.xuexiang.server.utils.StorageUtils;
+import com.xuexiang.templateandserver.MyApp;
+import com.xuexiang.templateandserver.db.ExternalDataBase;
+import com.xuexiang.xaop.annotation.Permission;
+import com.xuexiang.xormlite.AndServerDataBaseRepository;
+import com.xuexiang.xormlite.logs.DBLog;
 import com.xuexiang.xutil.app.BroadcastUtils;
+
+import static com.xuexiang.xaop.consts.PermissionConsts.STORAGE;
 
 /**
  * 服务管理者
@@ -81,7 +89,7 @@ public class ServerManager extends BroadcastReceiver {
     private Intent mService;
 
     public ServerManager(Context context, OnServerStatusListener listener) {
-        mContext = context;
+        mContext = context.getApplicationContext();
         mOnServerStatusListener = listener;
         mService = new Intent(mContext, CoreService.class);
     }
@@ -100,7 +108,9 @@ public class ServerManager extends BroadcastReceiver {
         BroadcastUtils.unregisterReceiver(mContext, this);
     }
 
+    @Permission(STORAGE)
     public void startServer() {
+        initServer();
         mContext.startService(mService);
     }
 
@@ -129,6 +139,23 @@ public class ServerManager extends BroadcastReceiver {
                     break;
             }
         }
+    }
+
+
+    private void initServer() {
+        StorageUtils.initRootPath(mContext);
+        initDB(mContext);
+    }
+
+
+    /**
+     * 初始化数据库框架
+     */
+    public static void initDB(Context context) {
+        AndServerDataBaseRepository.getInstance()
+                .setIDatabase(new ExternalDataBase(StorageUtils.getDateBasePath(), AndServerDataBaseRepository.DATABASE_NAME, AndServerDataBaseRepository.DATABASE_VERSION))
+                .init(context);
+        DBLog.debug(MyApp.isDebug());
     }
 
 

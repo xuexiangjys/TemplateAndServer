@@ -20,6 +20,7 @@ package com.xuexiang.templateandserver.core;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.xuexiang.rxutil2.lifecycle.RxLifecycle;
 import com.xuexiang.xpage.base.XPageActivity;
 import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.CoreSwitchBean;
@@ -52,6 +53,7 @@ public class BaseActivity extends XPageActivity {
         XUI.initTheme(this);
         super.onCreate(savedInstanceState);
         mUnbinder = ButterKnife.bind(this);
+        RxLifecycle.injectRxLifecycle(this);
     }
 
     /**
