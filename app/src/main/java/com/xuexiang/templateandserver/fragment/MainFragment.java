@@ -21,19 +21,26 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xuexiang.server.OnServerStatusListener;
 import com.xuexiang.server.ServerManager;
 import com.xuexiang.templateandserver.R;
 import com.xuexiang.templateandserver.core.BaseFragment;
+import com.xuexiang.templateandserver.fragment.manage.ServerManageFragment;
+import com.xuexiang.templateandserver.fragment.net.ServerTestFragment;
 import com.xuexiang.templateandserver.utils.Utils;
+import com.xuexiang.templateandserver.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
+import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.dialog.DialogLoader;
+import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xutil.XUtil;
+import com.xuexiang.xutil.net.NetworkUtils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -50,12 +57,10 @@ public class MainFragment extends BaseFragment implements OnServerStatusListener
 
     @BindView(R.id.btn_start)
     Button btnStart;
-    @BindView(R.id.btn_stop)
-    Button btnStop;
-    @BindView(R.id.btn_browse)
-    Button btnBrowse;
     @BindView(R.id.tv_message)
     TextView tvMessage;
+    @BindView(R.id.ll_service)
+    LinearLayout llService;
 
     private ServerManager mServerManager;
     private String mRootUrl;
@@ -74,15 +79,15 @@ public class MainFragment extends BaseFragment implements OnServerStatusListener
     }
 
     @SingleClick
-    @OnClick({R.id.btn_start, R.id.btn_stop, R.id.btn_browse})
+    @OnClick({R.id.btn_start, R.id.btn_stop, R.id.btn_browse, R.id.btn_manage, R.id.btn_test})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_start:
-                getMessageLoader().show();
+                getProgressLoader().showLoading();
                 mServerManager.startServer();
                 break;
             case R.id.btn_stop:
-                getMessageLoader().show();
+                getProgressLoader().showLoading();
                 mServerManager.stopServer();
                 break;
             case R.id.btn_browse:
@@ -90,17 +95,50 @@ public class MainFragment extends BaseFragment implements OnServerStatusListener
                     Utils.goWeb(this, mRootUrl);
                 }
                 break;
+            case R.id.btn_manage:
+                openPage(ServerManageFragment.class);
+                break;
+            case R.id.btn_test:
+                confirmIpAddress();
+                break;
             default:
                 break;
         }
     }
 
+    private void confirmIpAddress() {
+        new MaterialDialog.Builder(getContext())
+                .title(R.string.tip_warning)
+                .content(R.string.content_warning)
+                .inputRange(10, 50)
+                .input(getString(R.string.hint_please_input_server_ip_address), mRootUrl, false, (dialog, input) -> {
+                    String url = input.toString();
+                    if (NetworkUtils.isUrlValid(url)) {
+                        dialog.dismiss();
+                        gotoServerTest(url);
+                    } else {
+                        XToastUtils.error(R.string.tip_url_input_error);
+                    }
+                })
+                .positiveText(R.string.lab_continue)
+                .negativeText(R.string.lab_cancel)
+                .onNegative((dialog, which) -> dialog.dismiss())
+                .cancelable(false)
+                .autoDismiss(false)
+                .show();
+    }
+
+    private void gotoServerTest(String url) {
+        // 先设置服务器的地址
+        XHttpSDK.setBaseUrl(url);
+        openPage(ServerTestFragment.class);
+    }
+
     @Override
     public void onServerStart(String ip) {
-        getMessageLoader().dismiss();
+        getProgressLoader().dismissLoading();
         btnStart.setVisibility(View.GONE);
-        btnStop.setVisibility(View.VISIBLE);
-        btnBrowse.setVisibility(View.VISIBLE);
+        llService.setVisibility(View.VISIBLE);
 
         if (!TextUtils.isEmpty(ip)) {
             List<String> addressList = new LinkedList<>();
@@ -118,21 +156,19 @@ public class MainFragment extends BaseFragment implements OnServerStatusListener
 
     @Override
     public void onServerError(String message) {
-        getMessageLoader().dismiss();
+        getProgressLoader().dismissLoading();
         mRootUrl = null;
         btnStart.setVisibility(View.VISIBLE);
-        btnStop.setVisibility(View.GONE);
-        btnBrowse.setVisibility(View.GONE);
+        llService.setVisibility(View.GONE);
         tvMessage.setText(message);
     }
 
     @Override
     public void onServerStop() {
-        getMessageLoader().dismiss();
+        getProgressLoader().dismissLoading();
         mRootUrl = null;
         btnStart.setVisibility(View.VISIBLE);
-        btnStop.setVisibility(View.GONE);
-        btnBrowse.setVisibility(View.GONE);
+        llService.setVisibility(View.GONE);
         tvMessage.setText(R.string.server_stop_succeed);
     }
 

@@ -24,6 +24,7 @@ import com.xuexiang.templateandserver.core.BaseActivity;
 import com.xuexiang.templateandserver.db.InternalDataBase;
 import com.xuexiang.templateandserver.utils.XToastUtils;
 import com.xuexiang.xaop.XAOP;
+import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xormlite.AndServerDataBaseRepository;
 import com.xuexiang.xormlite.logs.DBLog;
 import com.xuexiang.xpage.AppPageConfig;
@@ -51,6 +52,9 @@ public final class XBasicLibInit {
     public static void init(Application application) {
         //工具类
         initXUtil(application);
+
+        //网络请求框架
+        initXHttp2(application);
 
         //页面框架
         initXPage(application);
@@ -129,5 +133,19 @@ public final class XBasicLibInit {
                 .setIDatabase(new InternalDataBase())
                 .init(application);
         DBLog.debug(MyApp.isDebug());
+    }
+
+    /**
+     * 初始化XHttp2
+     */
+    private static void initXHttp2(Application application) {
+        //初始化网络请求框架，必须首先执行
+        XHttpSDK.init(application);
+        //需要调试的时候执行
+        if (MyApp.isDebug()) {
+            XHttpSDK.debug();
+        }
+        //设置网络请求的全局基础地址
+        XHttpSDK.setBaseUrl("http://127.0.0.1:8080");
     }
 }

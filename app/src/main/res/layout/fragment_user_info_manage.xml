@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (C) 2020 xuexiangjys(xuexiangjys@163.com)
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_20dp"
+        android:orientation="vertical">
+
+        <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
+            android:id="@+id/et_login_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_login_name"
+            app:met_allowEmpty="false"
+            app:met_clearButton="true"
+            app:met_floatingLabel="normal"
+            app:met_floatingLabelText="@string/label_login_name" />
+
+        <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:hint="@string/hint_login_password"
+            android:inputType="textPassword"
+            app:met_errorMessage="@string/tip_password_error"
+            app:met_floatingLabel="normal"
+            app:met_floatingLabelText="@string/label_password"
+            app:met_isAsteriskStyle="true"
+            app:met_passWordButton="true"
+            app:met_regexp="@string/regex_password" />
+
+        <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:hint="@string/hint_name"
+            app:met_clearButton="true"
+            app:met_floatingLabel="normal"
+            app:met_floatingLabelText="@string/label_name" />
+
+        <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
+            android:id="@+id/et_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:hint="@string/hint_age"
+            android:inputType="number"
+            app:met_clearButton="true"
+            app:met_errorMessage="@string/tip_age_error"
+            app:met_floatingLabel="normal"
+            app:met_floatingLabelText="@string/label_age"
+            app:met_regexp="@string/regexp_age" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextStyle.Content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:text="@string/label_gender"
+                android:textColor="@color/xui_config_color_black" />
+
+            <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                android:id="@+id/ms_gender"
+                style="@style/Material.SpinnerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:ms_entries="@array/gender_entry" />
+
+        </LinearLayout>
+
+
+        <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:hint="@string/hint_phone_number"
+            android:inputType="number"
+            app:met_clearButton="true"
+            app:met_errorMessage="@string/tip_phone_number_error"
+            app:met_floatingLabel="normal"
+            app:met_floatingLabelText="@string/label_phone_number"
+            app:met_regexp="@string/regex_phone_number" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -18,7 +18,7 @@ public class User {
     @DatabaseField(generatedId = true)
     private long Id;
 
-    @DatabaseField
+    @DatabaseField(unique = true)
     private String loginName;
 
     @DatabaseField
@@ -97,6 +97,16 @@ public class User {
     public User setPhone(String phone) {
         this.phone = phone;
         return this;
+    }
+
+    public String getGenderName() {
+        if (gender == 0) {
+            return "男";
+        } else if (gender == 1) {
+            return "女";
+        } else {
+            return "未知";
+        }
     }
 
     @Override

@@ -16,42 +16,83 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical">
-
-<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="?attr/xui_config_content_spacing_horizontal"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_start"
-        style="@style/Button.Blue.wrap.Server"
-        android:text="@string/start_server" />
-
-    <Button
-        android:id="@+id/btn_stop"
-        style="@style/Button.Blue.wrap.Server"
-        android:text="@string/stop_server"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/btn_browse"
-        style="@style/Button.Blue.wrap.Server"
-        android:layout_marginTop="?attr/xui_config_content_spacing_horizontal"
-        android:text="@string/start_browse"
-        android:visibility="gone" />
-
-</LinearLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
-<TextView
-    android:id="@+id/tv_message"
-    style="@style/TextStyle.Content"
-    android:layout_margin="?attr/xui_config_content_spacing_horizontal"
-    android:gravity="start"
-    android:singleLine="false"
-    android:text="@string/server_stop_succeed" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="?attr/xui_config_content_spacing_horizontal"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_start"
+                style="@style/Button.Blue.wrap.Server"
+                android:text="@string/start_server" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btn_stop"
+                    style="@style/Button.Blue.wrap.Server"
+                    android:text="@string/stop_server" />
+
+                <Button
+                    android:id="@+id/btn_browse"
+                    style="@style/Button.Blue.wrap.Server"
+                    android:layout_marginTop="?attr/xui_config_content_spacing_horizontal"
+                    android:text="@string/start_browse" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="?attr/xui_config_content_spacing_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_manage"
+                        style="@style/Button.Blue.wrap.Server"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/service_manage" />
+
+                    <Button
+                        android:id="@+id/btn_test"
+                        style="@style/Button.Blue.wrap.Server"
+                        android:layout_width="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:text="@string/service_test" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_message"
+                style="@style/TextStyle.Content"
+                android:layout_marginTop="?attr/xui_config_content_spacing_horizontal"
+                android:gravity="start"
+                android:singleLine="false"
+                android:text="@string/server_stop_succeed" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
 </LinearLayout>
