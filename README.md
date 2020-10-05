@@ -6,7 +6,33 @@
 
 [![github](https://img.shields.io/badge/GitHub-xuexiangjys-blue.svg)](https://github.com/xuexiangjys)   [![csdn](https://img.shields.io/badge/CSDN-xuexiangjys-green.svg)](http://blog.csdn.net/xuexiangjys)   [![简书](https://img.shields.io/badge/简书-xuexiangjys-red.svg)](https://www.jianshu.com/u/6bf605575337)   [![掘金](https://img.shields.io/badge/掘金-xuexiangjys-brightgreen.svg)](https://juejin.im/user/598feef55188257d592e56ed)   [![知乎](https://img.shields.io/badge/知乎-xuexiangjys-violet.svg)](https://www.zhihu.com/people/xuexiangjys) 
 
-## 功能介绍（请star支持）
+## 演示（请star支持）
+
+### 服务端演示
+
+![](https://cdn.jsdelivr.net/gh/BugF/IMG/2020/10/05/5f7b19e093fd6.gif)
+
+### 浏览器演示
+
+![](https://cdn.jsdelivr.net/gh/BugF/IMG/2020/10/05/5f7b19de9cb51.gif)
+
+### 写法对比
+
+* AndServer
+
+![](https://cdn.jsdelivr.net/gh/BugF/IMG/2020/10/05/5f7b19db8508d.png)
+
+![](https://cdn.jsdelivr.net/gh/BugF/IMG/2020/10/05/5f7b19de4f5f6.png)
+
+* SpringBoot
+
+![](https://cdn.jsdelivr.net/gh/BugF/IMG/2020/10/05/5f7b19de9166b.png)
+
+从上面的图片我们很容易看出，AndServer的写法和SpringBoot是非常相似的，就连项目工程的结构也是相似的。
+
+---
+
+## 功能介绍
 
 > 本项目使用[AndServer](https://github.com/yanzhenjie/AndServer)提供的服务搭建。
 
