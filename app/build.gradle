@@ -99,11 +99,11 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'org.apache.commons:commons-collections4:4.4'
     implementation 'io.jsonwebtoken:jjwt:0.9.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     //数据库
     implementation 'com.github.xuexiangjys.XOrmlite:xormlite-runtime:1.0.2'
     annotationProcessor 'com.github.xuexiangjys.XOrmlite:xormlite-compiler:1.0.2'
-    implementation 'com.github.xuexiangjys:rxutil2:1.1.5'
+    implementation 'com.github.xuexiangjys:rxutil2:1.2.0'
     implementation deps.androidx.recyclerview
     implementation 'com.github.xuexiangjys.SmartRefreshLayout:refresh-layout:1.1.5'
     implementation deps.androidx.multidex
