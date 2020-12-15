@@ -31,12 +31,14 @@ import com.xuexiang.xpage.base.XPageActivity;
 import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.PageOption;
 import com.xuexiang.xpage.enums.CoreAnim;
+import com.xuexiang.xpage.utils.Utils;
 import com.xuexiang.xrouter.facade.service.SerializationService;
 import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.actionbar.TitleUtils;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 
 /**
  * 基础fragment
@@ -122,12 +124,13 @@ public abstract class BaseFragment extends XPageFragment {
         MobclickAgent.onPageEnd(getPageName());
     }
 
+
     //==============================页面跳转api===================================//
 
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
-     * @param clazz
+     * @param clazz 页面的类
      * @param <T>
      * @return
      */
@@ -138,14 +141,14 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
-     * @param clazzName
+     * @param pageName 页面名
      * @param <T>
      * @return
      */
-    public <T extends XPageFragment> Fragment openNewPage(String clazzName) {
-        return new PageOption(clazzName)
+    public <T extends XPageFragment> Fragment openNewPage(String pageName) {
+        return new PageOption(pageName)
                 .setAnim(CoreAnim.slide)
                 .setNewActivity(true)
                 .open(this);
@@ -153,9 +156,10 @@ public abstract class BaseFragment extends XPageFragment {
 
 
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
-     * @param clazz
+     * @param clazz                页面的类
+     * @param containActivityClazz 页面容器
      * @param <T>
      * @return
      */
@@ -167,9 +171,11 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
-     * @param clazz
+     * @param clazz 页面的类
+     * @param key   入参的键
+     * @param value 入参的值
      * @param <T>
      * @return
      */
@@ -202,9 +208,12 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
-     * @param clazz
+     * @param clazz          页面的类
+     * @param addToBackStack 是否加入回退栈
+     * @param key            入参的键
+     * @param value          入参的值
      * @param <T>
      * @return
      */
@@ -216,9 +225,11 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
-     * @param clazz
+     * @param clazz 页面的类
+     * @param key   入参的键
+     * @param value 入参的值
      * @param <T>
      * @return
      */
@@ -227,9 +238,12 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
-     * @param clazz
+     * @param clazz          页面的类
+     * @param addToBackStack 是否加入回退栈
+     * @param key            入参的键
+     * @param value          入参的值
      * @param <T>
      * @return
      */
@@ -239,9 +253,11 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
-     * @param clazz
+     * @param clazz 页面的类
+     * @param key   入参的键
+     * @param value 入参的值
      * @param <T>
      * @return
      */
@@ -254,7 +270,10 @@ public abstract class BaseFragment extends XPageFragment {
     /**
      * 打开页面,需要结果返回
      *
-     * @param clazz
+     * @param clazz       页面的类
+     * @param key         入参的键
+     * @param value       入参的值
+     * @param requestCode 请求码
      * @param <T>
      * @return
      */
@@ -266,7 +285,10 @@ public abstract class BaseFragment extends XPageFragment {
     /**
      * 打开页面,需要结果返回
      *
-     * @param clazz
+     * @param clazz       页面的类
+     * @param key         入参的键
+     * @param value       入参的值
+     * @param requestCode 请求码
      * @param <T>
      * @return
      */
@@ -280,22 +302,8 @@ public abstract class BaseFragment extends XPageFragment {
     /**
      * 打开页面,需要结果返回
      *
-     * @param clazz
-     * @param <T>
-     * @return
-     */
-    public <T extends XPageFragment> Fragment openNewPageForResult(Class<T> clazz, String key, String value, int requestCode) {
-        return new PageOption(clazz)
-                .setNewActivity(true)
-                .setRequestCode(requestCode)
-                .putString(key, value)
-                .open(this);
-    }
-
-    /**
-     * 打开页面,需要结果返回
-     *
-     * @param clazz
+     * @param clazz       页面的类
+     * @param requestCode 请求码
      * @param <T>
      * @return
      */
@@ -308,11 +316,32 @@ public abstract class BaseFragment extends XPageFragment {
     /**
      * 序列化对象
      *
-     * @param object
-     * @return
+     * @param object 需要序列化的对象
+     * @return 序列化结果
      */
     public String serializeObject(Object object) {
         return XRouter.getInstance().navigation(SerializationService.class).object2Json(object);
+    }
+
+    /**
+     * 反序列化对象
+     *
+     * @param input 反序列化的内容
+     * @param clazz 类型
+     * @return 反序列化结果
+     */
+    public <T> T deserializeObject(String input, Type clazz) {
+        return XRouter.getInstance().navigation(SerializationService.class).parseObject(input, clazz);
+    }
+
+
+    @Override
+    protected void hideCurrentPageSoftInput() {
+        if (getActivity() == null) {
+            return;
+        }
+        // 记住，要在xml的父布局加上android:focusable="true" 和 android:focusableInTouchMode="true"
+        Utils.hideSoftInputClearFocus(getActivity().getCurrentFocus());
     }
 
 }
