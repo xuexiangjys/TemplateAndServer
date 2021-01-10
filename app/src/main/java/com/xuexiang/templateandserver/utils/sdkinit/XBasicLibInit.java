@@ -24,7 +24,6 @@ import com.xuexiang.templateandserver.core.BaseActivity;
 import com.xuexiang.templateandserver.utils.XToastUtils;
 import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xhttp2.XHttpSDK;
-import com.xuexiang.xpage.AppPageConfig;
 import com.xuexiang.xpage.PageConfig;
 import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.XUI;
@@ -80,13 +79,7 @@ public final class XBasicLibInit {
      */
     private static void initXPage(Application application) {
         PageConfig.getInstance()
-                //页面注册
-                .setPageConfiguration(context -> {
-                    //自动注册页面,是编译时自动生成的，build一下就出来了
-                    return AppPageConfig.getInstance().getPages();
-                })
                 .debug(MyApp.isDebug() ? "PageLog" : null)
-                .enableWatcher(MyApp.isDebug())
                 .setContainActivityClazz(BaseActivity.class)
                 .init(application);
     }
