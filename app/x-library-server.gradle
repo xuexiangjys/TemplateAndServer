@@ -23,7 +23,7 @@ project.configurations.each { configuration ->
         //XRouter
         configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XRouter:xrouter-runtime:1.0.1'))
         //XHttp2
-        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys:XHttp2:2.0.1'))
+        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys:XHttp2:2.0.2'))
         configuration.dependencies.add(getProject().dependencies.create(deps.rxjava2))
         configuration.dependencies.add(getProject().dependencies.create(deps.rxandroid))
         configuration.dependencies.add(getProject().dependencies.create('com.squareup.okhttp3:okhttp:3.10.0'))
