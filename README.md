@@ -10,23 +10,23 @@
 
 ### 服务端演示
 
-![](https://cdn.jsdelivr.net/gh/BugF/IMG/2020/10/05/5f7b19e093fd6.gif)
+![](https://z3.ax1x.com/2021/06/15/2HmX0x.gif)
 
 ### 浏览器演示
 
-![](https://cdn.jsdelivr.net/gh/BugF/IMG/2020/10/05/5f7b19de9cb51.gif)
+![](https://z3.ax1x.com/2021/06/15/2Hmj76.gif)
 
 ### 写法对比
 
 * AndServer
 
-![](https://cdn.jsdelivr.net/gh/BugF/IMG/2020/10/05/5f7b19db8508d.png)
+![](https://z3.ax1x.com/2021/06/15/2HnC1H.png)
 
-![](https://cdn.jsdelivr.net/gh/BugF/IMG/2020/10/05/5f7b19de4f5f6.png)
+![](https://z3.ax1x.com/2021/06/15/2HnPcd.png)
 
 * SpringBoot
 
-![](https://cdn.jsdelivr.net/gh/BugF/IMG/2020/10/05/5f7b19de9166b.png)
+![](https://z3.ax1x.com/2021/06/15/2Hn99e.png)
 
 从上面的图片我们很容易看出，AndServer的写法和SpringBoot是非常相似的，就连项目工程的结构也是相似的。
 
