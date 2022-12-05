@@ -22,7 +22,7 @@ versions.rxjava2 = "2.2.20"
 versions.rxandroid = "2.1.1"
 versions.rxbinding = "2.2.0"
 versions.butterknife = "10.1.0"
-versions.runner = "1.2.0"
+versions.runner = "1.5.1"
 versions.gson = "2.8.5"
 
 def deps = [:]
