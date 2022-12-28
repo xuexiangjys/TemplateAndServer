@@ -114,7 +114,7 @@ dependencies {
     implementation  'com.umeng.umsdk:asms:1.2.1'
 
     //美团多渠道打包
-    implementation 'com.meituan.android.walle:library:1.1.6'
+    implementation 'com.meituan.android.walle:library:1.1.7'
 }
 
 //x-library依赖脚本
