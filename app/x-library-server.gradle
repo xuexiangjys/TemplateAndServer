@@ -32,7 +32,7 @@ project.configurations.each { configuration ->
 
     if (configuration.name == "annotationProcessor") {
         //XPage
-        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XPage:xpage-compiler:3.1.1'))
+        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XPage:xpage-compiler:3.4.0'))
         configuration.dependencies.add(getProject().dependencies.create(deps.butterknife.compiler))
         //XRouter
         configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XRouter:xrouter-compiler:1.0.1'))
