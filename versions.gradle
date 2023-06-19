@@ -8,7 +8,7 @@ import java.util.regex.Pattern
 ext.deps = [:]
 def versions = [:]
 versions.android_gradle_plugin = "3.6.4"
-versions.android_maven_gradle_plugin = "2.0"
+versions.android_maven_gradle_plugin = "2.1"
 versions.gradle_bintray_plugin = "1.8.5"
 versions.booster = "3.1.0"
 versions.booster_all = "1.1.1"
