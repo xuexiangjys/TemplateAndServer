@@ -94,7 +94,7 @@ dependencies {
     androidTestImplementation deps.espresso.core
 
     //AndServer
-    implementation 'com.yanzhenjie.andserver:api:2.1.5'
+    implementation 'com.yanzhenjie.andserver:api:2.1.12'
     annotationProcessor 'com.yanzhenjie.andserver:processor:2.1.5'
     implementation 'org.apache.commons:commons-lang3:3.11'
     implementation 'org.apache.commons:commons-collections4:4.4'
