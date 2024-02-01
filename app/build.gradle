@@ -98,7 +98,7 @@ dependencies {
     annotationProcessor 'com.yanzhenjie.andserver:processor:2.1.5'
     implementation 'org.apache.commons:commons-lang3:3.11'
     implementation 'org.apache.commons:commons-collections4:4.4'
-    implementation 'io.jsonwebtoken:jjwt:0.9.0'
+    implementation 'io.jsonwebtoken:jjwt:0.12.5'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     //数据库
     implementation 'com.github.xuexiangjys.XOrmlite:xormlite-runtime:1.0.2'
